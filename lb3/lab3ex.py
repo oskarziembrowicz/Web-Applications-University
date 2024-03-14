@@ -73,23 +73,56 @@ datagram = "45 00 00 4e f7 fa 40 00 38 06 9d 33 d4 b6 18 1b c0 a8 00 02 0b 54 b9
 datagram = datagram.replace(' ', '')
 
 protocol_ver_hex = datagram[0]
+
 SRC_IP_START = int(96/4)
 SRC_IP_END = int(128/4)
 src_ip_hex = datagram[SRC_IP_START:SRC_IP_END]
+
 DST_IP_START = int(128/4)
 DST_IP_END = int(160/4)
 dst_ip_hex = datagram[DST_IP_START:DST_IP_END]
+
 PROTOCOL_START = int(72/4)
 PROTOCOL_END = int(80/4)
 protocol_hex = datagram[PROTOCOL_START:PROTOCOL_END]
 
-SRC_PORT_START = int(160/4)
-SRC_PORT_END = int(176/4)
+protocol_ver = int(protocol_ver_hex, 16)
+src_ip = int(src_ip_hex, 16)
+dst_ip = int(dst_ip_hex, 16)
+protocol = int(protocol_hex, 16)
+
+outputA = f'zad15odpA;ver;{protocol_ver};srcip;{src_ip};dstip;{dst_ip};type;{protocol}'
+print(outputA)
+
+# Ports:
+
+if protocol == 6:
+    # TCP
+    print("TCP protocol")
+    SRC_PORT_START = int(160 / 4)
+    SRC_PORT_END = int(176 / 4)
+    DST_PORT_START = int(176 / 4)
+    DST_PORT_END = int(192 / 4)
+    DATA_START = int(416 / 4)
+elif protocol == 17:
+    # UDP
+    print("UDP protocol")
+    SRC_PORT_START = int(160 / 4)
+    SRC_PORT_END = int(176 / 4)
+    DST_PORT_START = int(176 / 4)
+    DST_PORT_END = int(192 / 4)
+    DATA_START = int(224 / 4)
+else:
+    # Wrong
+    print("Error: Incorrect protocol!")
+
 src_port_hex = datagram[SRC_PORT_START:SRC_PORT_END]
-DST_PORT_START = int(176/4)
-DST_PORT_END = int(192/4)
 dst_port_hex = datagram[DST_PORT_START:DST_PORT_END]
-DATA_START = int(320/4)
 data_hex = datagram[DATA_START:]
 
-print(protocol_hex)
+src_port = int(src_port_hex, 16)
+dst_port = int(dst_port_hex, 16)
+data = bytes.fromhex(data_hex).decode('ascii')
+
+outputB = f'zad15odpB;srcport;{src_port};dstport;{dst_port};data;{data}'
+print(outputB)
