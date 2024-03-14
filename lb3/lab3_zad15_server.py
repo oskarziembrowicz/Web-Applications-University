@@ -71,7 +71,7 @@ try:
 
         if data:
 
-            tmp = data.split(";")
+            tmp = data.decode().split(";")
             print("DATA: %s" % data)
 
             if tmp[0] == "zad15odpA":

@@ -126,3 +126,22 @@ data = bytes.fromhex(data_hex).decode('ascii')
 
 outputB = f'zad15odpB;srcport;{src_port};dstport;{dst_port};data;{data}'
 print(outputB)
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+client_socket.settimeout(5)
+
+try:
+    client_socket.connect(('127.0.0.1', 2911))
+    client_socket.send(outputA.encode())
+    responseA = client_socket.recv(1024)
+    print(responseA.decode())
+    if responseA.decode() == 'TAK':
+        client_socket.send(outputB.encode())
+        responseB = client_socket.recv(1024)
+        print(responseB.decode())
+    else:
+        print("Incorrect data!")
+except socket.error as e:
+    print(f"Socket error: {e}")
+
+client_socket.close()
