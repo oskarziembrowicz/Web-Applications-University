@@ -47,8 +47,8 @@ try:
 
         if data:
 
-            answer = check_msg_syntax(data)
-            sent = sock.sendto(answer, address)
+            answer = check_msg_syntax(data.decode())
+            sent = sock.sendto(answer.encode(), address)
             print('[%s] Sent %s bytes bytes back to client %s.' % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), sent, address))
 finally:
     sock.close()
