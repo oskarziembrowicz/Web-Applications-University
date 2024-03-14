@@ -1,4 +1,5 @@
 import socket
+import struct
 
 # Zad13
 
@@ -89,10 +90,16 @@ protocol_hex = datagram[PROTOCOL_START:PROTOCOL_END]
 protocol_ver = int(protocol_ver_hex, 16)
 src_ip = int(src_ip_hex, 16)
 dst_ip = int(dst_ip_hex, 16)
+# ip = '212.182.24.27'
+# ip = ip.split('.')
+# ip = ''.join((hex(int(i))[2:] for i in ip))
+# print(f"Is {src_ip_hex} equal to {ip}?")
+src_ip = socket.inet_ntoa(src_ip.to_bytes(4, byteorder='big'))
+# 192.168.0.2
+dst_ip = socket.inet_ntoa(dst_ip.to_bytes(4, byteorder='big'))
 protocol = int(protocol_hex, 16)
 
 outputA = f'zad15odpA;ver;{protocol_ver};srcip;{src_ip};dstip;{dst_ip};type;{protocol}'
-print(outputA)
 
 # Ports:
 
@@ -125,17 +132,18 @@ dst_port = int(dst_port_hex, 16)
 data = bytes.fromhex(data_hex).decode('ascii')
 
 outputB = f'zad15odpB;srcport;{src_port};dstport;{dst_port};data;{data}'
-print(outputB)
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 client_socket.settimeout(5)
 
 try:
     client_socket.connect(('127.0.0.1', 2911))
+    print(outputA)
     client_socket.send(outputA.encode())
     responseA = client_socket.recv(1024)
     print(responseA.decode())
     if responseA.decode() == 'TAK':
+        print(outputB)
         client_socket.send(outputB.encode())
         responseB = client_socket.recv(1024)
         print(responseB.decode())
