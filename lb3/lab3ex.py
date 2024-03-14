@@ -88,15 +88,12 @@ PROTOCOL_END = int(80/4)
 protocol_hex = datagram[PROTOCOL_START:PROTOCOL_END]
 
 protocol_ver = int(protocol_ver_hex, 16)
+
 src_ip = int(src_ip_hex, 16)
 dst_ip = int(dst_ip_hex, 16)
-# ip = '212.182.24.27'
-# ip = ip.split('.')
-# ip = ''.join((hex(int(i))[2:] for i in ip))
-# print(f"Is {src_ip_hex} equal to {ip}?")
 src_ip = socket.inet_ntoa(src_ip.to_bytes(4, byteorder='big'))
-# 192.168.0.2
 dst_ip = socket.inet_ntoa(dst_ip.to_bytes(4, byteorder='big'))
+
 protocol = int(protocol_hex, 16)
 
 outputA = f'zad15odpA;ver;{protocol_ver};srcip;{src_ip};dstip;{dst_ip};type;{protocol}'
