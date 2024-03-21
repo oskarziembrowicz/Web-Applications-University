@@ -47,9 +47,7 @@ client_socket.settimeout(5)
 
 try:
     client_socket.connect(('127.0.0.1', 2900))
-    client_socket.send('2+6'.encode())
-    # client_socket.send('+'.encode())
-    # client_socket.send('6'.encode())
+    client_socket.send('0.0.0.0'.encode())
     data = client_socket.recv(1024)
     if data:
         print(f"Recieved: {data.decode()}")
