@@ -62,12 +62,41 @@ import socket
 
 # Zad6
 
+# client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# client_socket.settimeout(5)
+#
+# try:
+#     client_socket.connect(('127.0.0.1', 2901))
+#     client_socket.send('example.com'.encode())
+#     data = client_socket.recv(1024)
+#     if data:
+#         print(f"Recieved: {data.decode()}")
+#     else:
+#         print("No data recieved :(")
+# except socket.error as e:
+#     print(f"Socket error: {e}")
+#
+# client_socket.close()
+
+#=====================================================
+
+# Zad7
+
+MAX_LENGTH = 20
+def fitTheMessage(message):
+    if len(message) < MAX_LENGTH:
+        while len(message) < MAX_LENGTH:
+            message += ' '
+    elif len(message) > MAX_LENGTH:
+        message = message[slice(0, MAX_LENGTH)]
+    return message
+
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.settimeout(5)
 
 try:
     client_socket.connect(('127.0.0.1', 2901))
-    client_socket.send('example.com'.encode())
+    client_socket.send(fitTheMessage('Hello').encode())
     data = client_socket.recv(1024)
     if data:
         print(f"Recieved: {data.decode()}")
