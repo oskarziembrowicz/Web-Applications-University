@@ -42,12 +42,32 @@ import socket
 
 # Zad5
 
+# client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# client_socket.settimeout(5)
+#
+# try:
+#     client_socket.connect(('127.0.0.1', 2900))
+#     client_socket.send('0.0.0.0'.encode())
+#     data = client_socket.recv(1024)
+#     if data:
+#         print(f"Recieved: {data.decode()}")
+#     else:
+#         print("No data recieved :(")
+# except socket.error as e:
+#     print(f"Socket error: {e}")
+#
+# client_socket.close()
+
+#============================================================
+
+# Zad6
+
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client_socket.settimeout(5)
 
 try:
-    client_socket.connect(('127.0.0.1', 2900))
-    client_socket.send('0.0.0.0'.encode())
+    client_socket.connect(('127.0.0.1', 2901))
+    client_socket.send('example.com'.encode())
     data = client_socket.recv(1024)
     if data:
         print(f"Recieved: {data.decode()}")
