@@ -1,0 +1,8 @@
+port 443 - https
+port 80 - http
+
+http v1.1 działa na TCP
+http v3.0 działa na UDP
+
+biblioteka socket żeby napisać ręcznie
+biblioteka http żeby napisać z pomocą
