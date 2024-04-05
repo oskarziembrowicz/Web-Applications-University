@@ -38,17 +38,17 @@ import requests
 # name = input("Enter your name: ")
 # phone = input("Enter youe phone number: ")
 # email = input("Enter your email address: ")
-# size = input("Do you want your pizza small, medium or large?")
+# size = input("Do you want your pizza small, medium or large? ")
 #
 # # Make sure this is an array:
-# num_of_tops = input("How many topping do you want from: bacon, cheese, mushroom, onion?")
+# num_of_tops = input("How many topping do you want from: bacon, cheese, mushroom, onion? ")
 # print("Enter yout toppings")
 # toppings = list()
 # for i in range(int(num_of_tops)):
 #     topp = input()
 #     toppings.append(topp)
 #
-# time = input("At what time do you want your delivery?")
+# time = input("At what time do you want your delivery? ")
 # comments = input("Enter comments to your order or skip: ")
 #
 # data = {
@@ -63,9 +63,10 @@ import requests
 #     }
 # }
 #
-# URL = "http://httpbin.org/post"
+# url = "http://httpbin.org/post"
 #
-# response = requests.post(URL, json=data)
+# response = requests.post(url, json=data)
+# print(f"Response status: {response.status_code}")
 # print(response.json())
 
 #========================================================
