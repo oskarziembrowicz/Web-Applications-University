@@ -17,12 +17,12 @@ import requests
 #==============================================
 
 # Zad2
-# Test this
 
-# URL = "httpbin.org/image/png"
-# response = requests.get(URL).content
+# url = "http://httpbin.org/image/png"
+# response = requests.get(url)
+# print(f"Response status: {response.status_code}")
 # file = open("lab5ex2response.png", "wb")
-# file.write(response)
+# file.write(response.content)
 # file.close()
 
 #===============================================
@@ -63,7 +63,7 @@ import requests
 #     }
 # }
 #
-# URL = "httpbin.org/post"
+# URL = "http://httpbin.org/post"
 #
 # response = requests.post(URL, json=data)
 # print(response.json())
