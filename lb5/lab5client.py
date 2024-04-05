@@ -1,14 +1,17 @@
 import requests
 
 # Zad1
-# Test this
-# Add specified browser as Safari 7.0.3
 
-# URL = "httpbin.org/html"
-# response = requests.get(URL)
-# print(response)
+# url = "http://httpbin.org/html"
+# headers = {'user-agent': 'Safari/7.0.3'}
+# response = requests.get(url, headers=headers)
+# print(f"Response status: {response.status_code}")
 # file = open("lab5ex1response.html", "w")
-# file.write(response.json())
+# file.write(response.text)
+# file.close()
+#
+# file = open("lab5ex1response.html", "r")
+# print(file.read())
 # file.close()
 
 #==============================================
