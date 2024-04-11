@@ -1,0 +1,16 @@
+telnet smtp.freesmtpservers.com 25  #To connect
+EHLO testowanieaplikacji.edu.pl
+# Podłączono
+MAIL FROM: testowanieaplikacji.edu.pl
+RCPT to: testowanieaplikacji.edu.pl
+DATA
+From: testowanieaplikacji.edu.pl
+To: testowanieaplikacji.edu.pl
+Subject: Hello test
+
+To jest pierwszy mail w dniu dzisiejszym.
+
+Z wyrazami szacunku,
+OZ
+.
+QUIT
