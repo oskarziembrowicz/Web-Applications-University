@@ -40,7 +40,9 @@ while True:
                 if data:
 
                     try:
-                        num = int(data)
+                        num = int(data.decode())
+
+                        print(type(num))
 
                         print("[%s] Client %s tries ... %s ... " % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), client_address, data))
 
@@ -49,19 +51,19 @@ while True:
                             msg = "You won! This is the right number!"
                             print("[%s] Client %s figured out the number!" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), client_address))
                             print("[%s] Random numer is now %s " % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), randomnumber))
-                            sock.sendall(msg)
+                            sock.sendall(msg.encode())
 
                         elif num < randomnumber:
                             msg = "Try again with a bigger number!"
-                            sock.sendall(msg)
+                            sock.sendall(msg.encode())
 
                         elif num > randomnumber :
                             msg = "Try again with a lower number!"
-                            sock.sendall(msg)
+                            sock.sendall(msg.encode())
 
                     except Exception as e:
                         msg = "Na-ah! Wrong type! %s" % e
-                        sock.sendall(msg)
+                        sock.sendall(msg.encode())
             except:
                 print("[%s] Client (%s) is offline" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), client_address))
                 sock.close()
