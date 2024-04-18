@@ -1,7 +1,7 @@
 import socket, select
 from random import randint
 HOST = '127.0.0.1'
-PORT = 2913
+PORT = 2914
 
 connected_clients_sockets = []
 

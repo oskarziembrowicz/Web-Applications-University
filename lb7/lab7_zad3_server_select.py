@@ -31,10 +31,10 @@ def open_tcp_port(host, port):
     while True:
         data = conn.recv(1024)
         if not data: break
-        print '[%s] Server got %s at TCP: %s' % (gettime(), data, port)
-        conn.send("Congratulations! You found the hidden")
+        print('[%s] Server got %s at TCP: %s' % (gettime(), data, port))
+        conn.send("Congratulations! You found the hidden".encode())
     conn.close()
-    print "[%s] Port knocking successful ... " % gettime()
+    print("[%s] Port knocking successful ... " % gettime())
 
 
 def clients_are_the_same(clients_list):
@@ -51,12 +51,12 @@ def run(host, tcpport):
             if ready[0]:
                 data, client = udpsock.recvfrom(100)
                 if not data: continue
-                if data == 'PING':
-                    print '[%s] Server got PING ... ' % gettime()
-                    udpsock.sendto('PONG', client)
+                if data.decode() == 'PING':
+                    print('[%s] Server got PING ... ' % gettime())
+                    udpsock.sendto('PONG'.encode(), client)
                     clients_list.append(client)
                     i += 1
-        except socket.timeout, e:
+        except socket.timeout as e:
             err = e.args[0]
             if err == 'timed out':
                 time.sleep(1)
@@ -64,7 +64,7 @@ def run(host, tcpport):
                 continue
             else:
                 clients_list[:] = []
-        except socket.error, e:
+        except socket.error as e:
             clients_list[:] = []
             break
 
@@ -76,7 +76,7 @@ def run(host, tcpport):
 if __name__ == '__main__':
 
     udpsockets = set_up_udp_ports(HOST, UDP_PORTS)
-    print "[%s] Server started...UDP port sequence: %s, TCP port to open: %s ... \n" % (gettime(), UDP_PORTS, TCP_PORT)
+    print("[%s] Server started...UDP port sequence: %s, TCP port to open: %s ... \n" % (gettime(), UDP_PORTS, TCP_PORT))
 
     while True:
         run(HOST, TCP_PORT)
