@@ -29,7 +29,7 @@ while True:
             print("Client connected")
         else:
             try:
-                data = read_socket.recv(1024)
+                data = client.recv(1024)
                 if data:
                     print(f"Recieved a message: {data.decode()}")
                     try:

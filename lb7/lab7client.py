@@ -2,7 +2,7 @@ import socket
 import time
 from itertools import permutations
 
-# Zad1 - Done
+# Zad1
 
 # client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # client_socket.settimeout(5)
@@ -25,7 +25,7 @@ from itertools import permutations
 
 #========================================================
 
-# Zad2 - Halfway
+# Zad2
 
 # client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 # client_socket.settimeout(5)
@@ -48,7 +48,7 @@ from itertools import permutations
 
 #=============================================================
 
-# Zad3 - Done
+# Zad3
 
 # Searching for UDP sequence
 # client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -106,46 +106,46 @@ from itertools import permutations
 #==================================================================
 
 # Zad4
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-client_socket.settimeout(5)
-
-try:
-    udp_time_start = time.time_ns()
-    client_socket.connect(('127.0.0.1', 2915))
-    # udp_time_start = time.time_ns()
-    client_socket.send('Hello'.encode())
-    data = client_socket.recv(1024)
-    if data:
-        print(f"Recieved: {data.decode()}")
-        udp_time_end = time.time_ns()
-    else:
-        print("No data recieved :(")
-except socket.error as e:
-    print(f"Socket error: {e}")
-
-client_socket.close()
-
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client_socket.settimeout(5)
-
-try:
-    tcp_time_start = time.time_ns()
-    client_socket.connect(('127.0.0.1', 2916))
-    # tcp_time_start = time.time_ns()
-    client_socket.send('Hello'.encode())
-    data = client_socket.recv(1024)
-    if data:
-        print(f"Recieved: {data.decode()}")
-        tcp_time_end = time.time_ns()
-    else:
-        print("No data recieved :(")
-except socket.error as e:
-    print(f"Socket error: {e}")
-
-client_socket.close()
-
-print(f"UDP time (ns): {udp_time_end - udp_time_start}")
-print(f"TCP time (ns): {tcp_time_end - tcp_time_start}")
+# client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+# client_socket.settimeout(5)
+#
+# try:
+#     udp_time_start = time.time_ns()
+#     client_socket.connect(('127.0.0.1', 2915))
+#     # udp_time_start = time.time_ns()
+#     client_socket.send('Hello'.encode())
+#     data = client_socket.recv(1024)
+#     if data:
+#         print(f"Recieved: {data.decode()}")
+#         udp_time_end = time.time_ns()
+#     else:
+#         print("No data recieved :(")
+# except socket.error as e:
+#     print(f"Socket error: {e}")
+#
+# client_socket.close()
+#
+# client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# client_socket.settimeout(5)
+#
+# try:
+#     tcp_time_start = time.time_ns()
+#     client_socket.connect(('127.0.0.1', 2916))
+#     # tcp_time_start = time.time_ns()
+#     client_socket.send('Hello'.encode())
+#     data = client_socket.recv(1024)
+#     if data:
+#         print(f"Recieved: {data.decode()}")
+#         tcp_time_end = time.time_ns()
+#     else:
+#         print("No data recieved :(")
+# except socket.error as e:
+#     print(f"Socket error: {e}")
+#
+# client_socket.close()
+#
+# print(f"UDP time (ns): {udp_time_end - udp_time_start}")
+# print(f"TCP time (ns): {tcp_time_end - tcp_time_start}")
 
 # Komunikacja zazwyczaj w obu przypadkach jest natychmiastowa, ale jeśli pojawiają się opóźnienia, to częściej w przypadku TCP i mają większe prawdopodobieństwo być bardziej znaczące niż w UDP
 # Wynika to z tego, że TCP poświęca dodatkowy czas na potwierdzenie pakietów
