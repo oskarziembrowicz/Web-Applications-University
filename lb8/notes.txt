@@ -1,0 +1,11 @@
+def thread(C):
+    C.in...
+    C.out...
+
+s = ServerSocket()
+while True:
+    C = S.accept()
+    thread(C)
+
+pominąć 4 zadanie
+threading lock() - użyć w zadaniu z plikami
