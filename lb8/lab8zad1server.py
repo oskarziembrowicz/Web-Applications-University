@@ -1,7 +1,7 @@
 import socket, threading
 
 HOST = '127.0.0.1'
-PORT = '2900'
+PORT = 2900
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -17,7 +17,6 @@ def serve(client, client_address):
         if data:
             client.send(data)
             print(f'Sending data to: {client_address}')
-
     except:
         print(f'Disconnected from client {client_address}')
         client.close()
@@ -25,5 +24,6 @@ def serve(client, client_address):
 while True:
 
         client, client_address = server_socket.accept()
+        print(f'Connected to client: {client_address}')
         threading.Thread(target=serve, args=(client, client_address)).start()
 server_socket.close()
