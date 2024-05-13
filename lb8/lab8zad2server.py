@@ -9,12 +9,12 @@ server_socket.bind((HOST, PORT))
 server_socket.listen(10)
 
 lock = threading.Lock()
-f = open("zad2serverLog.txt", "w")
 
 print("Server is listening")
 
 def serve(client, client_address):
     lock.acquire()
+    f = open("zad2serverLog.txt", "w")
     try:
         data = client.recv(4096)
         if data:
@@ -27,6 +27,7 @@ def serve(client, client_address):
         print(msg_fail)
         f.write(msg_fail)
         client.close()
+    f.close()
     lock.release()
 
 while True:
