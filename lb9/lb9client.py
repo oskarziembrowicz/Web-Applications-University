@@ -1,4 +1,6 @@
 import websocket
+import websockets
+import asyncio
 
 # Zad1
 
@@ -34,3 +36,15 @@ import websocket
 # print(ws.recv())
 
 #=============================================
+
+# Zad4
+
+url = 'ws://localhost:2900'
+async def test():
+    async with websockets.connect(url) as websocket:
+        message = input("Enter your message: ")
+        await websocket.send(message)
+        response = await websocket.recv()
+        print(response)
+
+asyncio.get_event_loop().run_until_complete(test())
